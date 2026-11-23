@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--
+  NEON POP
+  © 2026 by Rama. All rights reserved.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="author" content="Rama">
+  <meta name="copyright" content="© 2026 by Rama">
+  <meta name="description" content="Neon Pop — a fast, glowing bubble-popping arcade game by Rama.">
+  <meta name="theme-color" content="#0a0420">
+  <title>Neon Pop — by Rama</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <canvas id="game" aria-label="Neon Pop game board"></canvas>
+
+  <!-- HUD -->
+  <header class="hud" id="hud" hidden>
+    <div class="hud-block">
+      <span class="hud-label">Score</span>
+      <span class="hud-value" id="score">0</span>
+    </div>
+    <div class="hud-block">
+      <span class="hud-label">Level</span>
+      <span class="hud-value" id="level">1</span>
+    </div>
+    <div class="hud-block hud-lives">
+      <span class="hud-label">Lives</span>
+      <span class="hud-value" id="lives">♥♥♥</span>
+    </div>
+    <div class="hud-block hud-best">
+      <span class="hud-label">Best</span>
+      <span class="hud-value" id="best">0</span>
+    </div>
+    <div class="hud-buttons">
+      <button class="icon-btn" id="btnMute" title="Sound (M)" aria-label="Toggle sound">🔊</button>
+      <button class="icon-btn" id="btnPause" title="Pause (P)" aria-label="Pause">⏸</button>
+    </div>
+    <div class="progress" aria-hidden="true"><div class="progress-fill" id="progress"></div></div>
+  </header>
+
+  <!-- Combo indicator -->
+  <div class="combo" id="combo" hidden>
+    <span class="combo-mult" id="comboMult">x1</span>
+    <span class="combo-chain" id="comboChain">0 chain</span>
+  </div>
+
+  <!-- Power-up status -->
+  <div class="status" id="status" hidden>❄ FROZEN</div>
+
+  <!-- Toast (level up etc.) -->
+  <div class="toast" id="toast" hidden></div>
+
+  <!-- MAIN MENU -->
+  <section class="screen" id="menu">
+    <div class="panel">
+      <h1 class="logo"><span>NEON</span> <span>POP</span></h1>
+      <p class="tagline">Pop the glow. Chain the combo. Beat your best.</p>
+
+      <div class="menu-best">Best score <strong id="menuBest">0</strong></div>
+
+      <button class="btn btn-primary" id="btnPlay">▶ Play</button>
+      <button class="btn btn-ghost" id="btnHow">How to play</button>
+
+      <div class="howto" id="howto" hidden>
+        <ul class="legend">
+          <li><i class="dot d-normal"></i><b>Neon bubble</b> — pop it for points. Don't let it escape or you lose a life.</li>
+          <li><i class="dot d-gold"></i><b>Golden star</b> — worth 5× points.</li>
+          <li><i class="dot d-bomb"></i><b>Blast</b> — pops every bubble around it.</li>
+          <li><i class="dot d-ice"></i><b>Ice</b> — freezes time for 3 seconds.</li>
+          <li><i class="dot d-heart"></i><b>Heart</b> — restores one life (max 5).</li>
+          <li><i class="dot d-toxic"></i><b>Toxic skull</b> — avoid it! Popping it costs a life.</li>
+        </ul>
+        <p class="keys">Tap / click to pop · <kbd>P</kbd> or <kbd>Esc</kbd> pause · <kbd>M</kbd> sound · <kbd>Enter</kbd> start</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAUSE -->
+  <section class="screen" id="pause" hidden>
+    <div class="panel">
+      <h2 class="title">Paused</h2>
+      <button class="btn btn-primary" id="btnResume">▶ Resume</button>
+      <button class="btn btn-ghost" id="btnRestart">↻ Restart</button>
+      <button class="btn btn-ghost" id="btnQuit">⌂ Main menu</button>
+    </div>
+  </section>
+
+  <!-- GAME OVER -->
+  <section class="screen" id="over" hidden>
+    <div class="panel">
+      <h2 class="title title-danger">Game Over</h2>
+      <div class="newbest" id="newBest" hidden>★ New high score ★</div>
+      <div class="result">
+        <div><span>Score</span><strong id="finalScore">0</strong></div>
+        <div><span>Level</span><strong id="finalLevel">1</strong></div>
+        <div><span>Best</span><strong id="finalBest">0</strong></div>
+        <div><span>Pops</span><strong id="finalPops">0</strong></div>
+        <div><span>Top chain</span><strong id="finalChain">0</strong></div>
+      </div>
+      <button class="btn btn-primary" id="btnAgain">↻ Play again</button>
+      <button class="btn btn-ghost" id="btnMenu">⌂ Main menu</button>
+    </div>
+  </section>
+
+  <footer class="credit">© 2026 by Rama · Neon Pop · All rights reserved</footer>
+
+  <script src="game.js"></script>
+</body>
+</html>
